@@ -14,7 +14,7 @@
   "customizations": {
     "vscode": {
       // 拡張機能リスト(拡張機能IDを指定)
-      "extensions": ["MS-CEINTL.vscode-language-pack-ja"]
+      "extensions": ["github.copilot"]
     }
   }
 }
