@@ -7,9 +7,21 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  background-color: var(--background-color);
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+.stalker-target{
+  z-index: 10;
+  border-radius: 16px;
+}
+.stalker-target:hover {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+:root {
+  --primary-color: #0A5500;
+  --secoundary-color: #D34D00;
+  --background-color: #EFE6DC;
+  --text-color: #03001A;
 }
