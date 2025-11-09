@@ -1,0 +1,27 @@
+# 本番環境用Docker Compose設定
+# 使用方法: docker-compose -f docker-compose.prod.yml up -d
+
+services:
+  build:
+    context: .
+    dockerfile: Dockerfile
+    target: production  # 本番用ステージを指定
+  container_name: tamaru_homepage_prod
+  image: tamaru_homepage_prod
+  working_dir: /app
+  deploy:
+    resources:
+      limits:
+        memory: 2G
+  ports:
+    - "3000:3000"  # 本番用ポートのみ
+  networks:
+    - default_network
+  environment:
+    - NODE_ENV=production
+    # - VITE_API_URL=http://backend:8000 # バックエンド連携が必要な場合
+  restart: unless-stopped
+
+networks:
+  default_network:
+    driver: bridge

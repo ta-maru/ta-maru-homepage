@@ -1,22 +1,48 @@
-FROM node:20-alpine AS development-dependencies-env
-COPY . /app
+# ===== 開発ステージ =====
+FROM node:24 AS development
+
+# 作業ディレクトリを設定
 WORKDIR /app
+# package.jsonとpackage-lock.jsonを先にコピー（レイヤーキャッシュ最適化）
+COPY package*.json ./
+# 依存関係をインストール（development依存関係も含む）
 RUN npm ci
+# アプリケーションコードをコピー
+COPY . .
+# ポート3000と5173を公開（本番用と開発用）
+EXPOSE 3000 5173
+# 開発サーバーを起動
+CMD ["npm", "run", "dev"]
 
-FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
-WORKDIR /app
-RUN npm ci --omit=dev
 
-FROM node:20-alpine AS build-env
-COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
+# ===== ビルドステージ =====
+FROM node:24 AS builder
+# 作業ディレクトリを設定
 WORKDIR /app
+# package.jsonとpackage-lock.jsonをコピー
+COPY package*.json ./
+# 依存関係をインストール
+RUN npm ci
+# アプリケーションコードをコピー
+COPY . .
+# ビルド実行
 RUN npm run build
 
-FROM node:20-alpine
-COPY ./package.json package-lock.json /app/
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
-COPY --from=build-env /app/build /app/build
+# ===== 本番ステージ =====
+FROM node:24-slim AS production
+
+# 作業ディレクトリを設定
 WORKDIR /app
+# package.jsonとpackage-lock.jsonをコピー
+COPY package*.json ./
+# 本番用依存関係のみインストール
+RUN npm ci --only=production && npm cache clean --force
+# ビルド成果物をコピー
+COPY --from=builder /app/build ./build
+# 本番用ポート公開
+EXPOSE 3000
+# 本番サーバーを起動
 CMD ["npm", "run", "start"]
+
+# ===== デフォルトステージ（開発用） =====
+FROM development AS default
