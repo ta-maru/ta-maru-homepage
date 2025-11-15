@@ -1,4 +1,6 @@
-import type { Route } from "../../routes/+types/home";
+import type { Route } from "./+types/home";
+
+import GettingReady from "./gettingReady";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -10,7 +12,7 @@ export function meta({ }: Route.MetaArgs) {
 export default function Photos() {
   return (
     <>
-      <h1>準備中</h1>
+      <GettingReady />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import type { Route } from "./+types/home";
 import { HomeMain } from "../container/homeMain/homeMain";
 
-import { MouseStalker } from "~/mousePointer/mouseStalker";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <>
       <HomeMain />
-      <MouseStalker />
     </>
   );
 }

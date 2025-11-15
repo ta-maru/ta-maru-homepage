@@ -20,15 +20,18 @@ export function MouseStalker() {
             mouseStalker.style.visibility = "visible";
         }
 
+        // Hoverしている要素が.stalker-targetクラスを持っている場合、その要素の左側中央に追従する
         const targetElement = document.querySelector(".stalker-target:hover");
         if (targetElement) {
             const rect = targetElement.getBoundingClientRect();
-            const newTargetX = rect.left - 16;
-            const newTargetY = rect.top + rect.height / 2;
+            const newTargetX = (rect.left + window.scrollX) - 16;
+            const newTargetY = (rect.top + window.scrollY) + rect.height / 2;
 
             stalkerEngine.UpdateTargetPosition({ x: newTargetX, y: newTargetY });
         } else {
-            stalkerEngine.UpdateTargetPosition({ x: e.clientX, y: e.clientY });
+            const newTargetX = e.clientX + window.scrollX;
+            const newTargetY = e.clientY + window.scrollY;
+            stalkerEngine.UpdateTargetPosition({ x: newTargetX, y: newTargetY });
         }
     }
 

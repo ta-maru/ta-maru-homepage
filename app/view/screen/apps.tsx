@@ -1,4 +1,6 @@
 import type { Route } from "./+types/home";
+import AppMain from "../container/appMain/appMain";
+import Header from "../container/header/header";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -10,7 +12,7 @@ export function meta({ }: Route.MetaArgs) {
 export default function Apps() {
   return (
     <>
-      <h1>準備中</h1>
+      <AppMain />
     </>
   );
 }

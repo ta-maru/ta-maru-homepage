@@ -12,11 +12,6 @@ body {
 
 .stalker-target{
   z-index: 10;
-  border-radius: 16px;
-}
-.stalker-target:hover {
-  color: white;
-  background-color: var(--primary-color);
 }
 
 :root {
