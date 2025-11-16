@@ -2,9 +2,10 @@ import Paragraph from "~/view/component/paragraph";
 import Splitter from "~/view/component/splitter";
 import SnsLink from "./snsLink";
 
-import cameraSnsLogo from "./camera_logo.jpg";
+import cameraSnsIcon from "./camera_icon.jpg";
 import devSnsLogo from "~/view/share/logo.svg";
-import marshmallowLogo from "./marshmallow_logo.svg";
+import marshmallowIcon from "./marshmallow_icon.svg";
+import noteIcon from "./note_icon.svg"
 
 
 export function ProfileMain() {
@@ -13,7 +14,7 @@ export function ProfileMain() {
             {/* introduction */}
             <div className="flex gap-4 sm:flex-row flex-col items-center">
                 <div className="flex-1 max-w-32">
-                    <img src={cameraSnsLogo}
+                    <img src={cameraSnsIcon}
                         className="aspect-square rounded-full object-cover" />
                 </div>
                 <div className="flex-2 flex flex-col justify-center
@@ -51,11 +52,12 @@ export function ProfileMain() {
                 {/* links */}
                 <div className="mt-16 mb-16">
                     <h3 className="font-bold text-xl text-center mt-4 mb-4">SNS</h3>
-                    <div className="flex gap-16 justify-center flex-wrap">
-                        <SnsLink to="https://x.com/ta_maru_camera" imgSrc={cameraSnsLogo} label="X(カメラ)" />
+                    <div className="flex gap-x-16 gap-y-4 justify-center flex-wrap">
+                        <SnsLink to="https://x.com/ta_maru_camera" imgSrc={cameraSnsIcon} label="X(カメラ)" />
                         <SnsLink to="https://x.com/ta_maru_net" imgSrc={devSnsLogo} label="X(開発)" />
                         <SnsLink to="https://marshmallow-qa.com/
-z8n4nlo6ddukcni" imgSrc={marshmallowLogo} label="マシュマロ" />
+z8n4nlo6ddukcni" imgSrc={marshmallowIcon} label="マシュマロ" />
+                        <SnsLink to="https://note.com/ta_maru_net" imgSrc={noteIcon} label="note" />
                     </div>
                 </div>
             </div>
