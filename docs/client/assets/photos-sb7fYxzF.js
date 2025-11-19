@@ -1,0 +1,2 @@
+import{p as t,w as e}from"./chunk-UIGDSWPH-CWaCCVYV.js";import{l as n}from"./logo-CEAlwuCs.js";function o(){return t.jsxs("main",{className:`flex flex-col justify-center
+    max-w-2xl m-auto mt-16`,children:[t.jsx("h1",{className:"font-bold text-xl text-center",children:"準備中"}),t.jsx("img",{src:n,className:"mt-16"})]})}function m({}){return[{title:"た。の写真"},{name:"description",content:"た。撮った写真のポートフォリオ"}]}const i=e(function(){return t.jsx(t.Fragment,{children:t.jsx(o,{})})});export{i as default,m as meta};
